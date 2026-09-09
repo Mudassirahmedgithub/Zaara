@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,500&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #FFF6F9;
+  --pink-soft: #FFE1EE;
+  --pink-mid: #FFB8D9;
+  --pink-accent: #FF6FA5;
+  --text: #5B2A41;
+  --text-soft: #8A5A6E;
+  --white: #FFFEFF;
+
+  --font-heading: 'Fraunces', serif;
+  --font-script: 'Caveat', cursive;
+  --font-body: 'Quicksand', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  margin: 0;
+  color: var(--text);
+}
+
+p {
+  line-height: 1.7;
+  color: var(--text-soft);
+  margin: 0;
+}
+
+.script {
+  font-family: var(--font-script);
+}
+
+.section {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 90px 24px;
+}
+
+.section-heading {
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-sub {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 56px;
+  font-size: 1.05rem;
+}
+
+/* ---------- soft background blobs, used behind sections ---------- */
+.blob-bg {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.5;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 34px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--pink-accent);
+  color: var(--white);
+  box-shadow: 0 8px 20px rgba(255, 111, 165, 0.4);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(255, 111, 165, 0.5);
+}
+
+/* ---------- polaroid photo style ---------- */
+.polaroid {
+  background: var(--white);
+  padding: 14px 14px 44px 14px;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px rgba(91, 42, 65, 0.15);
+  display: inline-block;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.polaroid img,
+.polaroid video {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.polaroid:hover {
+  transform: translateY(-6px) rotate(0deg) !important;
+  box-shadow: 0 20px 34px rgba(91, 42, 65, 0.22);
+  z-index: 5;
+}
+
+.polaroid-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: var(--font-script);
+  font-size: 1.15rem;
+  color: var(--text-soft);
+}
+
+.tape {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-3deg);
+  width: 70px;
+  height: 26px;
+  background: rgba(255, 184, 217, 0.7);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* ---------- floating hearts (ambient + burst) ---------- */
+.floating-heart {
+  position: absolute;
+  pointer-events: none;
+  color: var(--pink-accent);
+  animation: floatUp linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-160px) scale(1.2) rotate(20deg);
+    opacity: 0;
+  }
+}
+
+@keyframes gentleBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.bob {
+  animation: gentleBob 4s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s ease forwards;
+}
+
+/* respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .floating-heart,
+  .bob,
+  .fade-up {
+    animation: none !important;
+  }
+}
+
+/* ---------- keyboard accessibility ---------- */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--pink-accent);
+  outline-offset: 3px;
+}
